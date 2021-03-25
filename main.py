@@ -1,7 +1,5 @@
 from tkinter import *
 import serial
-# from PIL import ImageTk,Image
-from time import sleep
 
 
 
@@ -30,29 +28,29 @@ if (serialPort.isOpen()):
                 serialString = serialPort.readline()
                 bmp = serialString.decode("Ascii")
 
+            root = Tk()
+            root.title("Spiff's Heartbeat")
+            root.geometry("275x200+200+200")
+            root.iconbitmap("Spifficon.ico")
+
+            var = StringVar()
+            var.set(bmp)
+
+
+            image = Image.open('HeartImg.ppm')
+            image = image.resize((200,200), Image.ANTIALIAS)
+            tk_image = PhotoImage(image)
+
+
+            label = Label(root, textvariable=var, image=tk_image, compound='center',font=(None,35), fg="White")
+            label.pack()
+
+            root.mainloop()
+
     except Exception:
         print('error')
 else:
     print('Cannot open serial port')
-
-# root = Tk()
-# root.title("Spiff's Heartbeat")
-# root.geometry("275x200+200+200")
-# root.iconbitmap("Spifficon.ico")
-
-# var = StringVar()
-# var.set(bmp)
-
-
-# image = Image.open('HeartImg.png')
-# image = image.resize((200,200), Image.ANTIALIAS)
-# tk_image = ImageTk.PhotoImage(image)
-
-
-# label = Label(root, textvariable=var, image=tk_image, compound='center',font=(None,35), fg="White")
-# label.pack()
-
-# root.mainloop()
 
 
 
