@@ -1,13 +1,15 @@
 from tkinter import *
-from serial import Serial
-from PIL import ImageTk,Image
+import serial
+# from PIL import ImageTk,Image
 from time import sleep
 
 
 
 #-------------------------------Interface----------------------------------
+serialString = ""
+bmp = ""
 
-serialPort = Serial(port = "COM1", baudrate=115200,bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE)
+serialPort = serial.Serial(port = "COM1", baudrate=115200,bytesize=8, timeout=2, stopbits=serial.STOPBITS_ONE)
 try:
     serialPort.isOpen()
     print('serial is open')
@@ -33,24 +35,24 @@ if (serialPort.isOpen()):
 else:
     print('Cannot open serial port')
 
-root = Tk()
-root.title("Spiff's Heartbeat")
-root.geometry("275x200+200+200")
-root.iconbitmap("Spifficon.ico")
+# root = Tk()
+# root.title("Spiff's Heartbeat")
+# root.geometry("275x200+200+200")
+# root.iconbitmap("Spifficon.ico")
 
-var = StringVar()
-var.set(bmp)
-
-
-image = Image.open('HeartImg.png')
-image = image.resize((200,200), Image.ANTIALIAS)
-tk_image = ImageTk.PhotoImage(image)
+# var = StringVar()
+# var.set(bmp)
 
 
-label = Label(root, textvariable=var, image=tk_image, compound='center',font=(None,35), fg="White")
-label.pack()
+# image = Image.open('HeartImg.png')
+# image = image.resize((200,200), Image.ANTIALIAS)
+# tk_image = ImageTk.PhotoImage(image)
 
-root.mainloop()
+
+# label = Label(root, textvariable=var, image=tk_image, compound='center',font=(None,35), fg="White")
+# label.pack()
+
+# root.mainloop()
 
 
 
